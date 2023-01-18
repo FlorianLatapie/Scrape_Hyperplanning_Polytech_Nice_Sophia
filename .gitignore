@@ -129,5 +129,6 @@ dmypy.json
 .pyre/
 
 credentials.txt
+downloads/
 
 .idea/*
