@@ -17,7 +17,8 @@ link = "http://sco.polytech.unice.fr/1/etudiant"
 verbose = True
 
 # # Prepare
-start_time = time.time()
+if verbose:
+    start_time = time.time()
 
 credentials = credentials_handler.return_login_password()
 
@@ -64,8 +65,15 @@ if not os.path.exists("downloads"):
 
 if verbose:
     print("Downloading files ...")
+    total = len(fifth_parent.find_elements(By.TAG_NAME, 'a'))
+    current = 0
 
 for element in fifth_parent.find_elements(By.XPATH, './/a'):
+    if verbose:
+        current += 1
+        print(f"Downloading element {current}/{total}")
+
+
     with open("downloads/" + element.text, 'wb') as f:
         f.write(requests.get(element.get_attribute('href')).content)
 
