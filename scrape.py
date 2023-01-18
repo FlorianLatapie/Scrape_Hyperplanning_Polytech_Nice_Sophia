@@ -4,7 +4,6 @@ import time
 import requests
 import selenium
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.edge.options import Options
 from selenium.webdriver.edge.webdriver import WebDriver
 from selenium.webdriver.support.ui import WebDriverWait
@@ -40,7 +39,6 @@ driver.find_element(By.NAME, 'submit').click()
 
 # ### Main page
 ressources_pedagogiques_XPATH = helper.embrace_for_text_search('Dernières ressources pédagogiques')
-driver.find_element(By.TAG_NAME, 'body').send_keys(Keys.CONTROL + 's')
 WebDriverWait(driver, 10).until(lambda driver_: driver_.find_element(By.XPATH, ressources_pedagogiques_XPATH))
 driver.find_element(By.XPATH, ressources_pedagogiques_XPATH).click()
 
@@ -72,7 +70,6 @@ for element in fifth_parent.find_elements(By.XPATH, './/a'):
     if verbose:
         current += 1
         print(f"Downloading element {current}/{total}")
-
 
     with open("downloads/" + element.text, 'wb') as f:
         f.write(requests.get(element.get_attribute('href')).content)
