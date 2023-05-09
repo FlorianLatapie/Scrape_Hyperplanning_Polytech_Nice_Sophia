@@ -8,11 +8,11 @@ Ces scripts Python utilisent Selenium avec Microsoft Edge comme WebDriver.
 
 ### `scrape_files.py`
 
-Télécharge tous les fichiers de la catégorie *Enseignements/Ressources pédagogiques* et les dépose dans un répertoire downloads à la racine du projet.
+Télécharge tous les fichiers de la catégorie *Enseignements/Ressources pédagogiques* et les dépose dans un répertoire `downloads/` à la racine du projet.
 
 ### `scape_notes.py`
 
-Vérifie si la moyenne de l'étudiant a changé et indique dans la console s'il c'est le cas.
+Vérifie si la moyenne de l'étudiant a changé (comparaison avec `average.txt`) et indique dans la console s'il c'est le cas.
 
 ## À voir aussi
 
