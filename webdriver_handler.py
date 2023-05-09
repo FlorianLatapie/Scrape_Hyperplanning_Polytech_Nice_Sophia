@@ -1,7 +1,6 @@
 from abc import ABC, abstractmethod
 import selenium
-from selenium.webdriver.edge.options import Options
-from selenium.webdriver.edge.webdriver import WebDriver
+
 
 
 class IWebDriverHandler(ABC):
@@ -22,8 +21,24 @@ class WebDriverFactory:
 
 
 class MSEdgeWebDriverHandler(IWebDriverHandler):
+    from selenium.webdriver.edge.webdriver import WebDriver
+
     def get_driver(self, headless: bool = True) -> WebDriver:
+        from selenium.webdriver.edge.options import Options
+
         options = Options()
         options.headless = headless
 
         return selenium.webdriver.Edge(options=options)
+
+# chrome
+class ChromeWebDriverHandler(IWebDriverHandler):
+    from selenium.webdriver.chrome.webdriver import WebDriver
+
+    def get_driver(self, headless: bool = True) -> WebDriver:
+        from selenium.webdriver.chrome.options import Options
+
+        options = Options()
+        options.headless = headless
+
+        return selenium.webdriver.Chrome(options=options)
