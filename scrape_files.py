@@ -3,7 +3,7 @@ import time
 import requests
 
 import credentials_handler
-import msedge_webdriver_handler
+from webdriver_handler import WebDriverFactory
 import helper
 
 from selenium.webdriver.common.by import By
@@ -20,7 +20,7 @@ if verbose:
 
 credentials = credentials_handler.return_login_password()
 
-driver = msedge_webdriver_handler.get_driver(headless=headless_driver)
+driver = WebDriverFactory.get(WebDriverFactory.MSEdge).get_driver(headless=headless_driver)
 
 # ## Start browser
 if verbose:
