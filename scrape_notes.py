@@ -1,17 +1,16 @@
 import os
 import time
 
-import selenium
-from selenium.webdriver.common.by import By
-from selenium.webdriver.edge.options import Options
-from selenium.webdriver.edge.webdriver import WebDriver
-from selenium.webdriver.support.ui import WebDriverWait
-
 import credentials_handler
+import msedge_webdriver_handler
+
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
 
 # # Consts
 link = "http://sco.polytech.unice.fr/1/etudiant"
 verbose = True
+headless_driver = True
 
 # # Prepare
 if verbose:
@@ -19,10 +18,7 @@ if verbose:
 
 credentials = credentials_handler.return_login_password()
 
-options = Options()
-options.headless = True
-
-driver: WebDriver = selenium.webdriver.Edge(options=options)
+driver = msedge_webdriver_handler.get_driver(headless=headless_driver)
 
 # ## Start browser
 if verbose:
@@ -74,4 +70,4 @@ driver.quit()
 if verbose:
     print("Browser closed ...")
     end_time = time.time()
-    print(f"Time elapsed: {end_time - start_time}")
+    print(f"Time elapsed: {end_time - start_time} s")
