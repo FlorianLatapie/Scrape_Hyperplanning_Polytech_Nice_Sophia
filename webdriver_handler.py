@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 import selenium
-
+from selenium.webdriver.edge.webdriver import WebDriver
 
 
 class IWebDriverHandler(ABC):
@@ -10,19 +10,21 @@ class IWebDriverHandler(ABC):
 
 
 class WebDriverFactory:
-    MSEdge = "msedge"
+    MS_EDGE = "msedge"
+    CHROME = "chrome"
+    DEFAULT = MS_EDGE
 
     @staticmethod
     def get(browser: str) -> IWebDriverHandler:
-        if browser == "msedge":
+        if browser == WebDriverFactory.MS_EDGE:
             return MSEdgeWebDriverHandler()
+        elif browser == WebDriverFactory.CHROME:
+            return ChromeWebDriverHandler()
         else:
             raise Exception(f"Unknown browser: {browser}")
 
 
 class MSEdgeWebDriverHandler(IWebDriverHandler):
-    from selenium.webdriver.edge.webdriver import WebDriver
-
     def get_driver(self, headless: bool = True) -> WebDriver:
         from selenium.webdriver.edge.options import Options
 
@@ -33,8 +35,6 @@ class MSEdgeWebDriverHandler(IWebDriverHandler):
 
 # chrome
 class ChromeWebDriverHandler(IWebDriverHandler):
-    from selenium.webdriver.chrome.webdriver import WebDriver
-
     def get_driver(self, headless: bool = True) -> WebDriver:
         from selenium.webdriver.chrome.options import Options
 

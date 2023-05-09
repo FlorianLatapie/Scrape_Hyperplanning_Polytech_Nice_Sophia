@@ -1,6 +1,7 @@
 # Scrape Hyperplanning Polytech Nice Sophia
 
-Ces scripts Python utilisent Selenium avec Microsoft Edge comme WebDriver.
+Ces scripts Python utilisent Selenium avec Microsoft Edge comme WebDriver.  
+On peut toutefois utiliser un autre WebDriver ajoutant l'argument `--webdriver <nom>` à l'appel des scripts.
 
 ## Fonctionnalités
 

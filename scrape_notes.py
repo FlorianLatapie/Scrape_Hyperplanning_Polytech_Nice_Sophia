@@ -1,8 +1,11 @@
 import os
 import time
+import argparse
+
 
 import credentials_handler
 from webdriver_handler import WebDriverFactory
+
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -18,7 +21,12 @@ if verbose:
 
 credentials = credentials_handler.return_login_password()
 
-driver = WebDriverFactory.get(WebDriverFactory.MSEdge).get_driver(headless=headless_driver)
+arg_parser = argparse.ArgumentParser(prog="scrape_files.py")
+arg_parser.add_argument("--webdriver", "-wd", type=str, default=WebDriverFactory.DEFAULT, help="webdriver to use")
+arg_parser.add_argument("--no-headless", action='store_false', default=True, help="display browser or not")
+args = arg_parser.parse_args()
+
+driver = WebDriverFactory.get(args.webdriver).get_driver(headless=args.no_headless)
 
 # ## Start browser
 if verbose:
