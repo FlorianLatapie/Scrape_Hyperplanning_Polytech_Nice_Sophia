@@ -1,11 +1,18 @@
 # Scrape Hyperplanning Polytech Nice Sophia
 
-## Fonctionnalités 
+Ces scripts Python utilisent Selenium avec Microsoft Edge comme WebDriver.
 
-Télécharge tous les fichiers de la catégorie *Dernières ressources pédagogiques* et les dépose dans un répertoire downloads à la racine du projet.
+## Fonctionnalités
 
 ![image](https://user-images.githubusercontent.com/70631622/213049214-a962caee-6548-427f-8e13-57cd612e6031.png)
 
+### `scrape_files.py`
+
+Télécharge tous les fichiers de la catégorie *Enseignements/Ressources pédagogiques* et les dépose dans un répertoire downloads à la racine du projet.
+
+### `scape_notes.py`
+
+Vérifie si la moyenne de l'étudiant a changé et indique dans la console s'il c'est le cas.
 
 ## À voir aussi
 

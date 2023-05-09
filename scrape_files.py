@@ -58,6 +58,8 @@ fifth_parent = elements[1] \
     .find_element(By.XPATH, '..') \
     .find_element(By.XPATH, '..')
 
+# ## Download files
+
 if not os.path.exists("downloads"):
     os.makedirs("downloads")
 
@@ -73,6 +75,8 @@ for element in fifth_parent.find_elements(By.XPATH, './/a'):
 
     with open("downloads/" + element.text, 'wb') as f:
         f.write(requests.get(element.get_attribute('href')).content)
+
+# ## Close browser
 
 if verbose:
     print("files downloaded, closing browser ...")
