@@ -1,0 +1,11 @@
+show dbs
+db.user.find()
+db.myFirstDatabase.find()
+show dbs
+db.myFirstDatabase.find()
+use myFirstDatabase
+show myFirstDatabase
+show dbs
+admin
+user pass
+show dbs

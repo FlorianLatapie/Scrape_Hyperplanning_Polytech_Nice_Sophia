@@ -1,5 +1,2 @@
-files:
-	python3 scrape_files.py
-
-notes:
-	python3 scrape_notes.py
+run:
+	python3.10 src/scrape_notes.py
