@@ -6,7 +6,7 @@ class MyCredentials:
 
     def __init__(self):
         self.file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../../config/my_config.ini")
-
+        print(self.file_path)
         self.credentials_exist()
 
         self.config = configparser.RawConfigParser()
