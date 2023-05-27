@@ -109,8 +109,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
-config/
-*.ini
+
 
 # Spyder project settings
 .spyderproject
@@ -130,7 +129,6 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-config/my_config.ini
 downloads/
 
 .idea/*
