@@ -134,4 +134,4 @@ config/my_config.ini
 downloads/
 
 .idea/*
-src/scraper/average.txt
+src/scraper/discipline.json

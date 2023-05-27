@@ -1,2 +1,1 @@
-from helper.my_credentials import My_credentials
-from helper.mongoDB import MongoDB
+from helper.MyCredentials import MyCredentials

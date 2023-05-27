@@ -1,1 +1,2 @@
-from scraper.scrape import Scraper
+from scraper.Scraper import Scraper
+from scraper.Discipline import Discipline
