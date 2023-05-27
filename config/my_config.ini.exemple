@@ -1,0 +1,6 @@
+[user]
+username = username
+password = password
+
+[bot]
+token = token

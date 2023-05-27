@@ -1,12 +1,10 @@
 # https://discord.com/api/oauth2/authorize?client_id=1110501745345433610&permissions=8&scope=bot
-import asyncio
 import time
-from threading import Thread
 
 import discord
 from discord.ext import commands
 from discord.ext import tasks
-from discord import app_commands
+
 
 import sys
 import os
