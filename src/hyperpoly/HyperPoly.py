@@ -9,8 +9,8 @@ from discord.ext import tasks
 import sys
 import os
 
-helper_folder = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..\helper")
-scraper_folder = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..\scraper")
+helper_folder = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../helper")
+scraper_folder = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../scraper")
 
 print(sys.path)
 
