@@ -98,7 +98,7 @@ class Scraper:
             with open(self.file_path, 'w') as file:
                 file.write(jsonpickle.encode(self.new_discipline))
         else:
-            current_discipline = self.current_discipline[:-1]
+            current_discipline = self.current_discipline
             new_discipline = self.new_discipline
 
             for i in range(len(new_discipline)):
