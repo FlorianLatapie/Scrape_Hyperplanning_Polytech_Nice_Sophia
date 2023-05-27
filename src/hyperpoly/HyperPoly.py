@@ -12,6 +12,8 @@ import os
 helper_folder = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..\helper")
 scraper_folder = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..\scraper")
 
+print(os.path)
+
 sys.path.insert(1, r'' + helper_folder)
 sys.path.insert(1, r'' + scraper_folder)
 
