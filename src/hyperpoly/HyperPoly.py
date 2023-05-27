@@ -5,7 +5,6 @@ import discord
 from discord.ext import commands
 from discord.ext import tasks
 
-
 import sys
 import os
 
@@ -121,6 +120,7 @@ async def configure(ctx):
     embed = discord.Embed(title="Notification", description="Notifications will be here", color=0xff6464)
     await channel_choose.send(embed=embed)
 
+
 @tasks.loop(seconds=40)
 async def weird():
     try:
@@ -133,8 +133,8 @@ async def weird():
             print("\nEnd check: ", len(list_new_mark), "\n")
         else:
             print("\nEnd check\n")
-    except:
-        print("weird BUG !")
+    except Exception as e:
+        print("weird BUG ! \n", e)
 
 
 async def send_notification(discipline):
@@ -144,7 +144,6 @@ async def send_notification(discipline):
 
         embed = discord.Embed(title="New mark", description="A new mark in " + discipline, color=0xff6464)
         await channel.send(embed=embed)
-
 
 
 async def check():
