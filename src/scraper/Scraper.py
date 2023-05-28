@@ -1,6 +1,7 @@
 import time
 import argparse
 import configparser
+from selenium import webdriver
 from webdriver_handler import WebDriverFactory
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -38,13 +39,11 @@ class Scraper:
         config = configparser.RawConfigParser()
         config.read('../config/my_config.ini')
 
-        arg_parser = argparse.ArgumentParser(prog="scrape_files.py")
-        arg_parser.add_argument("--webdriver", "-wd", type=str, default=WebDriverFactory.DEFAULT,
-                                help="webdriver to use")
-        arg_parser.add_argument("--no-headless", action='store_false', default=True, help="display browser or not")
-        args = arg_parser.parse_args()
+        options = webdriver.FirefoxOptions()
+        options.add_argument('-headless')
 
-        self.driver = WebDriverFactory.get(args.webdriver).get_driver(headless=self.headless_driver)
+        self.driver = webdriver.Firefox(options=options)
+        self.driver.maximize_window()
 
         if self.verbose:
             print("Browser started ...")

@@ -134,3 +134,6 @@ downloads/
 
 .idea/*
 src/scraper/discipline.json
+
+src/scraper/rep.html
+src/scraper/discipline.json
