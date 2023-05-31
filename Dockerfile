@@ -15,6 +15,4 @@ WORKDIR /usr/src/app
 
 COPY . .
 
-RUN pip install --upgrade pip && pip install -r requirements.txt
-
-CMD [ "python", "src/hyperpoly/HyperPoly.py" ]
+CMD [ "./install.sh" ]

@@ -18,7 +18,6 @@ class Scraper:
 
         self.file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "discipline.json")
 
-
     async def start3(self, username, password):
 
         if self.verbose:
@@ -31,13 +30,17 @@ class Scraper:
                 serialized_object = file.read()
             self.current_discipline = jsonpickle.decode(serialized_object)
 
-        self.new_discipline = None
-
         options = webdriver.FirefoxOptions()
         options.add_argument('-headless')
 
         self.driver = webdriver.Firefox(options=options)
+        self.driver.set_page_load_timeout(60)
         self.driver.maximize_window()
+
+        print("webdriver.__version__: ", webdriver.__version__)
+        print("webdriver.FirefoxOptions().gecko_version: ", webdriver.FirefoxOptions().gecko_version)
+
+        self.new_discipline = None
 
         if self.verbose:
             print("Browser started ...")

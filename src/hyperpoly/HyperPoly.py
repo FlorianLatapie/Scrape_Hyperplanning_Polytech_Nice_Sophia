@@ -1,4 +1,3 @@
-# https://discord.com/api/oauth2/authorize?client_id=1110501745345433610&permissions=8&scope=bot
 import asyncio
 from discord_webhook import DiscordWebhook, DiscordEmbed
 
@@ -16,7 +15,6 @@ from MarkChecker import MarkChecker
 from Discipline import Discipline
 
 credentials = MyCredentials()
-
 markChecker = MarkChecker()
 
 async def check():
