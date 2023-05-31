@@ -25,7 +25,7 @@ async def check():
         for new_mark in list_new_mark:
             await send_notification(new_mark.name)
         print("\nEnd check: ", len(list_new_mark), "\n")
-        await asyncio.sleep(30)
+        await asyncio.sleep(600)
 
 
 async def send_notification(discipline):

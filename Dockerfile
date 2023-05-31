@@ -1,4 +1,4 @@
-FROM python:3.10
+FROM python:3.14
 
 RUN apt-get update && apt-get install -y firefox-esr
 
@@ -15,9 +15,11 @@ WORKDIR /usr/src/app
 
 COPY . .
 
-RUN python -m venv venv  \
+RUN apt-get install python3-venv  \
+    && python3 -m venv venv  \
+    && chmod +x ./venv/bin/activate  \
     && ./venv/bin/activate  \
-    && pip install --upgrade pip  \
-    && pip install -r requirements.txt
+    && pip3 install --upgrade pip  \
+    && pip3 install -r requirements.txt
 
 CMD [ "python", "src/hyperpoly/HyperPoly.py" ]

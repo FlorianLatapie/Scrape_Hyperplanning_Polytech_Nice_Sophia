@@ -37,9 +37,6 @@ class Scraper:
         self.driver.set_page_load_timeout(60)
         self.driver.maximize_window()
 
-        print("webdriver.__version__: ", webdriver.__version__)
-        print("webdriver.FirefoxOptions().gecko_version: ", webdriver.FirefoxOptions().gecko_version)
-
         self.new_discipline = None
 
         if self.verbose:
