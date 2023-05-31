@@ -23,14 +23,14 @@ class MyCredentials:
         file = open(self.file_path, "w")
         username = input("What is your username : ")
         password = input("What is your password : ")
-        token = input("What is your bot token : ")
+        url = input("What is your webhook url : ")
         file.writelines(
             ["[user]\n",
              "username = " + username + "\n",
              "password = " + password + "\n",
              "\n",
-             "[bot]\n",
-             "token = " + token + "\n"])
+             "[webhook]\n",
+             "url = " + url + "\n"])
 
     def get_username(self):
         return self.config.get('user', 'username')
@@ -38,5 +38,5 @@ class MyCredentials:
     def get_user_password(self):
         return self.config.get('user', 'password')
 
-    def get_bot_token(self):
-        return self.config.get('bot', 'token')
+    def get_webhook_url(self):
+        return self.config.get('webhook', 'url')

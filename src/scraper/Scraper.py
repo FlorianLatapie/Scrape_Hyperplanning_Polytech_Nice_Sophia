@@ -1,8 +1,5 @@
 import time
-import argparse
-import configparser
 from selenium import webdriver
-from webdriver_handler import WebDriverFactory
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from bs4 import BeautifulSoup
@@ -35,9 +32,6 @@ class Scraper:
             self.current_discipline = jsonpickle.decode(serialized_object)
 
         self.new_discipline = None
-
-        config = configparser.RawConfigParser()
-        config.read('../config/my_config.ini')
 
         options = webdriver.FirefoxOptions()
         options.add_argument('-headless')
