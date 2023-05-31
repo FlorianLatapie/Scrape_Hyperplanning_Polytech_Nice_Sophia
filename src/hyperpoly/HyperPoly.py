@@ -19,12 +19,15 @@ markChecker = MarkChecker()
 
 async def check():
     while True:
-        print("\nCheck ...")
-        list_new_mark = await markChecker.get_new_mark(credentials.get_username(), credentials.get_user_password())
-        print(list_new_mark)
-        for new_mark in list_new_mark:
-            await send_notification(new_mark.name)
-        print("\nEnd check: ", len(list_new_mark), "\n")
+        try:
+            print("\nCheck ...")
+            list_new_mark = await markChecker.get_new_mark(credentials.get_username(), credentials.get_user_password())
+            print(list_new_mark)
+            for new_mark in list_new_mark:
+                await send_notification(new_mark.name)
+            print("\nEnd check: ", len(list_new_mark), "\n")
+        except :
+            print('BUG !')
         await asyncio.sleep(600)
 
 
