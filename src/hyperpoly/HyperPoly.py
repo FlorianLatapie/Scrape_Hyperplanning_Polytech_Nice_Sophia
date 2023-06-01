@@ -18,6 +18,7 @@ credentials = MyCredentials()
 markChecker = MarkChecker()
 
 async def check():
+    index = 0
     while True:
         try:
             print("\nCheck ...")
@@ -26,9 +27,11 @@ async def check():
             for new_mark in list_new_mark:
                 await send_notification(new_mark.name)
             print("\nEnd check: ", len(list_new_mark), "\n")
-        except :
-            print('BUG !')
-        await asyncio.sleep(600)
+        except Exception as error:
+            # handle the exception
+            print("An exception occurred:", error)  # An exception occurred: division by zero
+        index += 1
+        await asyncio.sleep(60)
 
 
 async def send_notification(discipline):
@@ -38,7 +41,9 @@ async def send_notification(discipline):
     webhook.add_embed(embed)
     webhook.execute()
 
+
 async def my_async_function():
     await check()
+
 
 asyncio.run(my_async_function())

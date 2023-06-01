@@ -47,7 +47,7 @@ class Scraper:
         await self.login(username, password)
         await self.go_to_dernieres_notes()
 
-        # self.close_browser()
+        self.close_browser()
 
         if self.verbose:
             end_time = time.time()
