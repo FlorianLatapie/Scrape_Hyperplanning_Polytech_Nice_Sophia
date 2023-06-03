@@ -1,4 +1,5 @@
 import time
+import sys
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -7,6 +8,10 @@ from Discipline import Discipline
 import jsonpickle
 import os
 
+helper_folder = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../helper")
+sys.path.insert(1, r'' + helper_folder)
+
+from Logger import logger
 
 class Scraper:
     def __init__(self, average=None, link="http://sco.polytech.unice.fr/1/etudiant", verbose=False,
@@ -18,10 +23,9 @@ class Scraper:
 
         self.file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "discipline.json")
 
-    async def start3(self, username, password):
+    async def start(self, username, password):
 
-        if self.verbose:
-            start_time = time.time()
+        start_time = time.time()
 
         if not os.path.exists(self.file_path):
             self.current_discipline = None
@@ -33,14 +37,15 @@ class Scraper:
         options = webdriver.FirefoxOptions()
         options.add_argument('-headless')
 
-        self.driver = webdriver.Firefox(options=options)
+        helper_folder = os.path.dirname(os.path.abspath(__file__)) + "/../../logs/geckodriver.log"
+
+        self.driver = webdriver.Firefox(options=options, service_log_path=helper_folder)
         self.driver.set_page_load_timeout(60)
         self.driver.maximize_window()
 
         self.new_discipline = None
 
-        if self.verbose:
-            print("Browser started ...")
+        logger.info("Browser started ...")
 
         self.driver.get(self.link)
 
@@ -49,9 +54,8 @@ class Scraper:
 
         self.close_browser()
 
-        if self.verbose:
-            end_time = time.time()
-            print(f"Time elapsed: {end_time - start_time} s")
+        end_time = time.time()
+        logger.info(f"Time elapsed: {end_time - start_time} s")
 
         return await self.perform_calculations()
 
@@ -105,5 +109,4 @@ class Scraper:
 
     def close_browser(self):
         self.driver.quit()
-        if self.verbose:
-            print("Browser closed ...")
+        logger.info("Browser closed ...")

@@ -1,12 +1,15 @@
 import configparser
 import os
+import sys
 
-import os.path
+helper_folder = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../helper")
+sys.path.insert(1, r'' + helper_folder)
+
+from Logger import logger
 class MyCredentials:
 
     def __init__(self):
         self.file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../../config/my_config.ini")
-        print(self.file_path)
         self.credentials_exist()
 
         self.config = configparser.RawConfigParser()
@@ -14,10 +17,11 @@ class MyCredentials:
 
     def credentials_exist(self):
         if (not os.path.exists(self.file_path)):
-            print("credentials doesn't exist")
-            self.create_credentials()
+            logger.info("Credentials doesn't exist")
+            exit()
+            # self.create_credentials()
         else:
-            print("credentials exist")
+            logger.info("Credentials exist")
 
     def create_credentials(self):
         file = open(self.file_path, "w")

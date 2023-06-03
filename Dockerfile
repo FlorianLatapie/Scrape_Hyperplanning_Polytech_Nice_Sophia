@@ -1,25 +1,25 @@
 FROM python:3.11
 
-RUN apt-get update && apt-get install -y firefox-esr
+RUN apt-get update
+RUN apt-get install -y firefox-esr
 
 WORKDIR /usr/resource
 
-RUN wget https://github.com/mozilla/geckodriver/releases/download/v0.33.0/geckodriver-v0.33.0-linux-aarch64.tar.gz \
-    && tar -xvzf geckodriver-v0.33.0-linux-aarch64.tar.gz \
-    && rm geckodriver-v0.33.0-linux-aarch64.tar.gz \
-    && mv geckodriver /usr/local/bin/ \
-    && chmod +x /usr/local/bin/geckodriver \
-    && geckodriver --version
+RUN wget https://github.com/mozilla/geckodriver/releases/download/v0.33.0/geckodriver-v0.33.0-linux-aarch64.tar.gz
+RUN tar -xvzf geckodriver-v0.33.0-linux-aarch64.tar.gz
+RUN rm geckodriver-v0.33.0-linux-aarch64.tar.gz
+RUN mv geckodriver /usr/local/bin/
+RUN chmod +x /usr/local/bin/geckodriver
 
 WORKDIR /usr/src/app
 
 COPY . .
 
-RUN apt-get install python3-venv  \
-    && python3 -m venv venv  \
-    && chmod +x ./venv/bin/activate  \
-    && ./venv/bin/activate  \
-    && pip3 install --upgrade pip  \
-    && pip3 install -r requirements.txt
+ENV VIRTUAL_ENV=/opt/venv
+RUN python3 -m venv $VIRTUAL_ENV
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+
+COPY requirements.txt .
+RUN pip install -r requirements.txt
 
 CMD [ "python", "src/hyperpoly/HyperPoly.py" ]
