@@ -6,27 +6,32 @@ Pour ce faire, nous avons 2 étapes :
 - Création d'un webhook Discord
 - Lancer l'application
 
-
+<p style="text-align: justify">
 Cette application utilise la version 3.11 de Python (https://firefox-source-docs.mozilla.org/testing/geckodriver/Support.html). Il utilise la librairie Selenium avec Mozilla Firefox-esr v102.11.0
 et geckodriver v0.33.0 comme WebDriver (https://github.com/mozilla/geckodriver/releases).
+</p>
 
 ### Création d'un webhook Discord
 
 Aller dans les paramètres du serveur et ensuite sélectionner "Intégrations" :
-
+<p align="center">
 <img src="docs/add_webhook.png" width="500" alt="Intégrations"/>
+</p>
 
 Cliquer sur "Crée un webhook" :
-
+<p align="center">
 <img src="docs/create_webhook.png" width="500" alt="Crée un webhook"/>
+</p>
 
 Cliquer sur "Nouveau webhook" :
-
+<p align="center">
 <img src="docs/new_webhook.png" width="500" alt="Nouveau webhook"/>
+</p>
 
 Il suffit maintenant de customiser comme vous le souhaiter :
-
+<p align="center">
 <img src="docs/customize_webhook.png" width="500" alt="Customiser"/>
+</p>
 
 ### Lancé l'application
 

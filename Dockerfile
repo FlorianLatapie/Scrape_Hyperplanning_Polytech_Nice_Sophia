@@ -16,8 +16,11 @@ WORKDIR /usr/src/app
 COPY . .
 
 ENV VIRTUAL_ENV=/opt/venv
+RUN python --version
 RUN python3 -m venv $VIRTUAL_ENV
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+
+RUN echo $PATH
 
 COPY requirements.txt .
 RUN pip install -r requirements.txt

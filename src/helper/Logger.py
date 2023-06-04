@@ -12,5 +12,3 @@ logging.basicConfig(level=logging.INFO,
                     filename=path_logs + "app.log",
                     filemode="a",
                     format='%(asctime)s - %(levelname)s - %(filename)s - %(message)s')
-
-print('ok:', path_logs)

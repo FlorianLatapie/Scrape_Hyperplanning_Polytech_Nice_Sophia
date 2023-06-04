@@ -13,18 +13,30 @@ sys.path.insert(1, r'' + helper_folder)
 
 from Logger import logger
 
+
 class Scraper:
-    def __init__(self, average=None, link="http://sco.polytech.unice.fr/1/etudiant", verbose=False,
-                 headless_driver=True):
-        self.average = average
+    def __init__(self, link: str = "http://sco.polytech.unice.fr/1/etudiant"):
+        """
+        Initializes a new instance of the Scraper class.
+
+        Parameters:
+        - link (str): The URL of the web page to scrape.
+        """
         self.link = link
-        self.verbose = verbose
-        self.headless_driver = headless_driver
 
         self.file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "discipline.json")
 
     async def start(self, username, password):
+        """
+        Starts the scraping process.
 
+        Parameters:
+        - username (str): The username for logging in.
+        - password (str): The password for logging in.
+
+        Returns:
+        - list: A list of new marks (Discipline objects).
+        """
         start_time = time.time()
 
         if not os.path.exists(self.file_path):
@@ -60,14 +72,24 @@ class Scraper:
         return await self.perform_calculations()
 
     async def login(self, username, password):
+        """
+        Logs in to the web page using the provided username and password.
+
+        Parameters:
+        - username (str): The username for logging in.
+        - password (str): The password for logging in.
+        """
         self.driver.find_element(By.ID, 'username').send_keys(username)
         self.driver.find_element(By.ID, 'password').send_keys(password)
         self.driver.find_element(By.NAME, 'submit').click()
 
     async def go_to_dernieres_notes(self):
-        dernieres_notes = "//header[@title='Les 10 dernières notes']"
-        WebDriverWait(self.driver, 10).until(lambda driver_: driver_.find_element(By.XPATH, dernieres_notes))
-        self.driver.find_element(By.XPATH, dernieres_notes).click()
+        """
+        Navigates to the page containing the latest marks.
+        """
+        last_notes = "//header[@title='Les 10 dernières notes']"
+        WebDriverWait(self.driver, 10).until(lambda driver_: driver_.find_element(By.XPATH, last_notes))
+        self.driver.find_element(By.XPATH, last_notes).click()
 
         WebDriverWait(self.driver, 10).until(lambda driver_: driver_.find_elements(By.CLASS_NAME, "ie-titre-gros"))
 
@@ -80,6 +102,7 @@ class Scraper:
         list_discipline = []
 
         if len(span_tags) % 2 != 0:
+            logger.error("A discipline do not have marks")
             exit("Not a pair number")
 
         # Don't need general average
@@ -89,6 +112,12 @@ class Scraper:
         self.new_discipline = list_discipline
 
     async def perform_calculations(self):
+        """
+        Performs calculations to determine new marks.
+
+        Returns:
+        - list: A list of new marks (Discipline objects).
+        """
         list_new_mark = []
 
         if (self.current_discipline == None):
@@ -108,5 +137,8 @@ class Scraper:
         return list_new_mark
 
     def close_browser(self):
+        """
+        Closes the web browser.
+        """
         self.driver.quit()
         logger.info("Browser closed ...")
